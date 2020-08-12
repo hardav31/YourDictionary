@@ -9,11 +9,9 @@ namespace BusinessLogic.Config
     {
         public AutoMapperProfileBL()
         {
-
+            // Add as many of these lines as you need to map your objects
+            //CreateMap<User, UserDto>();
+            //CreateMap<UserDto, User>();
         }
-        //public static void Configure(IMapperConfigurationExpression config)
-        //{
-
-        //}
     }
 }
