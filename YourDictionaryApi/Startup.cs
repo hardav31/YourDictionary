@@ -13,6 +13,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
+using BusinessLogic.Service.Common;
+using BusinessLogic.Service;
+using BusinessLogic.Config;
 
 namespace YourDictionaryApi
 {
@@ -112,6 +116,12 @@ namespace YourDictionaryApi
             services.ConfigureAuthenticationService();
             services.ConfigureSwaggerService();
             services.ConfigureAutoMapper();
+            services.ConfgureBllServices(Configuration);
+
+            //Entity Framework  
+            //YourDictionaryDbContext.ConfigureDBContext(services, ConnectionString);
+            //services.AddTransient<YourDictionaryDbContext, YourDictionaryDbContext>();
+            //services.AddTransient<UserService, UserService>();
         }
         private void ConfigureCoreServices(IServiceCollection services)
         {

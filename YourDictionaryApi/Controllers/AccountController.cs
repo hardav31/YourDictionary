@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BusinessLogic.Models;
+using BusinessLogic.Service;
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
@@ -20,10 +22,12 @@ namespace YourDictionaryApi.Controllers
     {
         private readonly ITokenService _tokenService;
         private readonly IRefreshTokenService _refreshTokenService;
-        public AccountController(ITokenService tokenService, IRefreshTokenService refreshTokenService)
+        private IUserService _userService;
+        public AccountController(ITokenService tokenService, IRefreshTokenService refreshTokenService,IUserService userService)
         {
             _tokenService = tokenService;
             _refreshTokenService = refreshTokenService;
+            _userService = userService;
         }
         [HttpGet("GetAccount")]
         [Authorize]
@@ -35,7 +39,13 @@ namespace YourDictionaryApi.Controllers
                 throw new Exception("aaa");
             return Ok(32);
         }
-
+        [HttpGet("GetUser")]
+        [AllowAnonymous]
+        public async Task<UserModelBL> GetUser()
+        {
+            var user = await this._userService.GetUsers();
+            return user;
+        }
         [HttpPost("Login")]
         [AllowAnonymous]
         public async Task<Dictionary<string, string>> Login()
