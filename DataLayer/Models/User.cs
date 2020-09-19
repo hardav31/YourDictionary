@@ -18,5 +18,8 @@ namespace DataLayer.Models
         public DateTime CreationDate { get; set; }
         public DateTime LastModifedDate { get; set; }
         public DateTime? LastLoginDate { get; set; }
+        public ICollection<UserLanguage> UserLanguages { get; set; }
+        public ICollection<Word> Words { get; set; }
+        public ICollection<Test> Tests { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace BusinessLogic.Config
             var connectionString = configuration.GetConnectionString("DictionaryDbConstr");
 
             services.AddDbContext<YourDictionaryDataEntities>(options => options.UseSqlServer(connectionString),ServiceLifetime.Singleton);
-            services.AddSingleton<YourDictionaryDbContext, YourDictionaryDbContext>();
+            services.AddScoped<YourDictionaryDbContext, YourDictionaryDbContext>();
 
             //per scope
             services.AddScoped<IUserService, UserService>();
