@@ -22,8 +22,10 @@ namespace BusinessLogic.Config
 
             //per scope
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITestService, TestService>();
+            services.AddScoped<IWordService, WordService>();
 
-            
+
         }
     }
 }
